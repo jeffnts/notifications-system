@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  notifications-system:
+    build:
+      context: .
+      target: production
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=production
+    command: npm run start
