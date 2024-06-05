@@ -2,6 +2,19 @@
 
 A **Notifications System** é uma aplicação de gerenciamento de notificações que permite criar, editar e gerenciar aplicativos que irão enviar notificações. A aplicação suporta notificações do tipo Web Push, E-mail e SMS.
 
+## URL de produição
+
+Abra seu navegador da web e acesse a seguinte URL para acessar a aplicação em produção:
+
+
+[https://notifications-system-liart.vercel.app/](https://notifications-system-liart.vercel.app/)
+
+### Credenciais para Teste
+Você pode usar as seguintes credenciais para testar a aplicação:
+
+- Usuário: teste@email.com
+- Senha: abc123
+
 ## Descrição
 
 O sistema permite:
