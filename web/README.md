@@ -1,4 +1,4 @@
-![Notification Icon](/public/logo.svg)
+![Notification Icon](/web/public/logo.svg)
 
 A **Notifications System** é uma aplicação de gerenciamento de notificações que permite criar, editar e gerenciar aplicativos que irão enviar notificações. A aplicação suporta notificações do tipo Web Push, E-mail e SMS.
 
