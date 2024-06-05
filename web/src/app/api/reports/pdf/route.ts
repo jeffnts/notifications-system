@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib'
-import { mapChannels } from '@/conts'
+import { mapChannels } from '@/consts'
 
 export async function POST(request: Request) {
   try {
@@ -147,6 +147,7 @@ export async function POST(request: Request) {
       },
     })
   } catch (error) {
+    console.log(error)
     return new Response('SERVER_ERROR', { status: 500 })
   }
 }

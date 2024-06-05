@@ -10,8 +10,8 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-  DialogClose,
 } from '@/components/ui/dialog'
+import useCreateAccount from './useCreateAccount'
 
 type Props = {
   open: boolean
@@ -19,6 +19,9 @@ type Props = {
 }
 
 export function CreateAccount({ open, onOpenChange }: Props) {
+  const { register, onSubmit, isPending, errors } = useCreateAccount({
+    onClose: () => onOpenChange(false),
+  })
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[800px]">
@@ -29,7 +32,11 @@ export function CreateAccount({ open, onOpenChange }: Props) {
         <div className="grid gap-4 py-4">
           <div className="space-y-2">
             <Label htmlFor="name">Nome</Label>
-            <Input id="name" placeholder="Digite seu nome" required />
+            <Input
+              placeholder="Digite seu nome"
+              {...register('name')}
+              errors={errors}
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
@@ -37,32 +44,43 @@ export function CreateAccount({ open, onOpenChange }: Props) {
               id="email"
               type="email"
               placeholder="Digite seu e-mail"
-              required
+              {...register('email')}
+              errors={errors}
             />
           </div>
           <div className="space-y-2">
             <Label htmlFor="confirmEmail">Confirmar Email</Label>
             <Input
-              id="confirmEmail"
               type="email"
               placeholder="Confirme seu e-mail"
-              required
+              {...register('emailConfirmation')}
+              errors={errors}
             />
           </div>
           <div className="space-y-2">
             <Label htmlFor="password">Senha</Label>
-            <PasswordInput placeholder="Digite sua senha" />
+            <PasswordInput
+              placeholder="Digite sua senha"
+              {...register('password')}
+              errors={errors}
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="confirmPassword">Confirmar Senha</Label>
-            <PasswordInput placeholder="Confirme sua senha" />
+            <PasswordInput
+              placeholder="Confirme sua senha"
+              {...register('passwordConfirmation')}
+              errors={errors}
+            />
           </div>
         </div>
         <DialogFooter>
           <Button onClick={() => onOpenChange(false)} variant="outline">
             Cancelar
           </Button>
-          <Button type="submit">Criar conta</Button>
+          <Button disabled={isPending} onClick={onSubmit} type="submit">
+            Criar conta
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

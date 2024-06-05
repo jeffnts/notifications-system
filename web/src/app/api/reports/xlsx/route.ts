@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import * as XLSX from 'xlsx'
-import { mapChannels } from '@/conts'
+import { mapChannels } from '@/consts'
 
 export async function POST(request: Request) {
   try {

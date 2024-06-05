@@ -1,5 +1,5 @@
 import { Widget, Breadcrumb } from '@/components'
-import { menuItems } from '@/conts'
+import { menuItems } from '@/consts'
 
 export default function HomePage() {
   const widgets = menuItems.filter(({ name }) => name !== 'Home')

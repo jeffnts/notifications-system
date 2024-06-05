@@ -1,22 +1,31 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Title, Breadcrumb } from '@/components'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import {
-  PlusIcon,
   GlobeIcon,
   MailIcon,
   MessageCircleIcon,
+  HardDriveIcon,
 } from '@/components/icons'
 import useApplications from '@/hooks/useApplications'
 
-export default function ApplicationCreatePage() {
+export default function UpdateApplication() {
   const [channels, setChannels] = useState<string[]>([])
-  const { register, errors, clearErrors, onSubmit, isLoadingSubmit } =
-    useApplications(channels)
+  const {
+    register,
+    errors,
+    clearErrors,
+    onSubmit,
+    isLoadingSubmit,
+    application,
+    isLoadindApplication,
+    onUpdate,
+    isLoadingUpdate,
+  } = useApplications(channels)
 
   const links = [
     {
@@ -24,10 +33,18 @@ export default function ApplicationCreatePage() {
       link: '/applications',
     },
     {
-      name: 'Cadastro de aplicativo',
-      link: '/applications/create',
+      name: 'Lista de aplicativos',
+      link: '/applications/list',
+    },
+    {
+      name: 'Editar aplicativo',
+      link: '',
     },
   ]
+
+  useEffect(() => {
+    setChannels(application?.channels || [])
+  }, [application])
 
   function handleSetIntegrations(channel: string) {
     clearErrors('channels')
@@ -50,8 +67,8 @@ export default function ApplicationCreatePage() {
           <Title
             title={
               <div className="flex items-center gap-2">
-                <PlusIcon className="h-5 w-5" />
-                Cadastro de aplicativo{' '}
+                <HardDriveIcon className="h-5 w-5" />
+                Editar aplicativo{' '}
               </div>
             }
             description="Preencha os detalhes do seu aplicativo para começar"
@@ -64,6 +81,7 @@ export default function ApplicationCreatePage() {
               </Label>
               <Input
                 placeholder="Digite o nome do seu aplicativo"
+                defaultValue={application?.name}
                 {...register('name')}
                 errors={errors}
               />
@@ -102,11 +120,11 @@ export default function ApplicationCreatePage() {
             </div>
 
             <Button
-              disabled={isLoadingSubmit}
-              onClick={onSubmit}
+              disabled={isLoadingUpdate}
+              onClick={onUpdate}
               className="sm:w-fit sm:self-end w-full"
             >
-              Cadastrar Aplicativo
+              <HardDriveIcon className="mr-2 h-4 w-4" /> Atualizar Aplicativo
             </Button>
           </div>
         </div>

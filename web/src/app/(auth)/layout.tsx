@@ -1,5 +1,7 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import { LogoutButton } from '@/components'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -17,9 +19,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import { MenuIcon } from '@/components/icons'
-import { menuItems } from '@/conts'
-
-import type { Metadata } from 'next'
+import { menuItems } from '@/consts'
 
 export const metadata: Metadata = {
   title: 'Notifications System',
@@ -140,7 +140,7 @@ export default function HomeLayout({
                 <Link href="/user">Configurações</Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Sair</DropdownMenuItem>
+              <LogoutButton />
             </DropdownMenuContent>
           </DropdownMenu>
         </header>

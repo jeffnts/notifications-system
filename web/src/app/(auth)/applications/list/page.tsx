@@ -23,9 +23,7 @@ import {
 import useApplications from '@/hooks/useApplications'
 
 export default function ApplicationListPage() {
-  const [edit, setEdit] = useState<string[]>([])
-
-  const { applications } = useApplications()
+  const { applications, onRemove, isLoadingRemove } = useApplications()
 
   const links = [
     {
@@ -39,25 +37,15 @@ export default function ApplicationListPage() {
   ]
 
   const mapNames: any = {
-    'web-push': 'Web Push',
-    email: 'E-mail',
-    sms: 'SMS',
+    WEB_PUSH: 'Web Push',
+    EMAIL: 'E-mail',
+    SMS: 'SMS',
   }
 
   const mapIcons: any = {
-    'web-push': <GlobeIcon className="h-4 w-4" />,
-    email: <MailIcon className="h-4 w-4" />,
-    sms: <MessageCircleIcon className="h-4 w-4" />,
-  }
-
-  function handleEditApp(id: string) {
-    setEdit((state) => {
-      if (state.includes(id)) {
-        return state.filter((item) => item !== id)
-      }
-
-      return [...state, id]
-    })
+    WEB_PUSH: <GlobeIcon className="h-4 w-4" />,
+    EMAIL: <MailIcon className="h-4 w-4" />,
+    SMS: <MessageCircleIcon className="h-4 w-4" />,
   }
 
   return (
@@ -86,37 +74,27 @@ export default function ApplicationListPage() {
                           <Grid3x3Icon className="h-5 w-5" />
                         </div>
 
-                        {edit.includes(app.id) ? (
-                          <div className="space-y-2">
-                            <Label htmlFor="appName">
-                              Nome de identificação do aplicativo
-                            </Label>
-                            <Input
-                              id="appName"
-                              placeholder="Ex: Meu Aplicativo Incrível"
-                            />
-                          </div>
-                        ) : (
-                          <h3 className="font-semibold">{app.name}</h3>
-                        )}
+                        <h3 className="font-semibold">{app.name}</h3>
                       </div>
                     </div>
                     <div className="grid grid-cols-1 gap-4">
                       <div className="flex flex-col items-start">
-                        {app.integrations.map((integration) => (
+                        {app.channels.map((channel) => (
                           <div
-                            key={integration}
+                            key={channel}
                             className="flex items-center justify-between w-full"
                           >
                             <div className="flex items-center gap-2">
-                              {mapIcons[integration]}
-                              <span>{mapNames[integration]}</span>
+                              {mapIcons[channel]}
+                              <span>{mapNames[channel]}</span>
                             </div>
                             <div className="flex items-center gap-2">
                               <Tooltip>
                                 <TooltipTrigger asChild>
                                   <Link
-                                    href={`/applications/list/${app.id}/${integration}`}
+                                    href={`/applications/${app.id}/${channel
+                                      .replace('_', '-')
+                                      .toLowerCase()}`}
                                   >
                                     <Button variant="ghost" size="icon">
                                       <SettingsIcon className="h-4 w-4" />
@@ -128,35 +106,23 @@ export default function ApplicationListPage() {
                                 </TooltipTrigger>
                                 <TooltipContent>Configurar</TooltipContent>
                               </Tooltip>
-                              <ConfirmModal
-                                title={`Remover integração ${mapNames[integration]}`}
-                                description={`Tem certeza que deseja remover a integração ${mapNames[integration]}?`}
-                                onConfirm={() => console.log('foi')}
-                              >
-                                <Button variant="ghost" size="icon">
-                                  <TrashIcon className="h-4 w-4" />
-                                  <span className="sr-only">Remover</span>
-                                </Button>
-                              </ConfirmModal>
                             </div>
                           </div>
                         ))}
                       </div>
                     </div>
                     <div className="flex sm:justify-between sm:flex-row flex-col w-full justify-center gap-4">
-                      <Button
-                        onClick={() => handleEditApp(app.id)}
-                        variant="default"
-                        className=" sm:w-fit w-full"
-                      >
-                        <HardDriveIcon className="h-4 w-4 mr-2" />
-                        {edit.includes(app.id) ? 'Salvar' : 'Editar'} Aplicativo
-                      </Button>
+                      <Link href={`/applications/${app.id}`}>
+                        <Button variant="default" className=" sm:w-fit w-full">
+                          <HardDriveIcon className="h-4 w-4 mr-2" />
+                          Editar Aplicativo
+                        </Button>
+                      </Link>
 
                       <ConfirmModal
                         title={`Remover aplicativo "${app.name}"`}
                         description={`Tem certeza que deseja remover o aplicativo "${app.name}"?`}
-                        onConfirm={() => console.log('foi')}
+                        onConfirm={() => onRemove(app.id)}
                       >
                         <Button
                           variant="destructive"

@@ -5,7 +5,7 @@ export default function useReports() {
   const historic = [
     {
       application: 'TravelMate',
-      channel: 'email',
+      channel: 'EMAIL',
       sendDate: '2023-05-01',
       receiveDate: '2023-05-02',
       readConfirmation: true,
@@ -20,7 +20,7 @@ export default function useReports() {
     },
     {
       application: 'Foodie',
-      channel: 'web-push',
+      channel: 'WEB_PUSH',
       sendDate: '2023-05-03',
       receiveDate: '2023-05-04',
       readConfirmation: false,
@@ -34,7 +34,7 @@ export default function useReports() {
     },
     {
       application: 'MindCalm',
-      channel: 'sms',
+      channel: 'SMS',
       sendDate: '2023-05-05',
       receiveDate: '2023-05-06',
       readConfirmation: true,
@@ -48,7 +48,7 @@ export default function useReports() {
     },
     {
       application: 'FitLife',
-      channel: 'email',
+      channel: 'EMAIL',
       sendDate: '2023-05-07',
       receiveDate: '2023-05-08',
       readConfirmation: true,
@@ -62,7 +62,7 @@ export default function useReports() {
     },
     {
       application: 'NewsFlash',
-      channel: 'web-push',
+      channel: 'WEB_PUSH',
       sendDate: '2023-05-09',
       receiveDate: '2023-05-10',
       readConfirmation: false,
@@ -76,7 +76,7 @@ export default function useReports() {
     },
     {
       application: 'ShopEasy',
-      channel: 'email',
+      channel: 'EMAIL',
       sendDate: '2023-05-11',
       receiveDate: '2023-05-12',
       readConfirmation: true,
@@ -90,7 +90,7 @@ export default function useReports() {
     },
     {
       application: 'BookWorm',
-      channel: 'email',
+      channel: 'EMAIL',
       sendDate: '2023-05-13',
       receiveDate: '2023-05-14',
       readConfirmation: false,
@@ -104,7 +104,7 @@ export default function useReports() {
     },
     {
       application: 'HealthFirst',
-      channel: 'sms',
+      channel: 'SMS',
       sendDate: '2023-05-15',
       receiveDate: '2023-05-16',
       readConfirmation: true,
@@ -118,7 +118,7 @@ export default function useReports() {
     },
     {
       application: 'TechSavvy',
-      channel: 'web-push',
+      channel: 'WEB_PUSH',
       sendDate: '2023-05-17',
       receiveDate: '2023-05-18',
       readConfirmation: false,
@@ -132,7 +132,7 @@ export default function useReports() {
     },
     {
       application: 'FitnessPro',
-      channel: 'email',
+      channel: 'EMAIL',
       sendDate: '2023-05-19',
       receiveDate: '2023-05-20',
       readConfirmation: true,
@@ -149,7 +149,7 @@ export default function useReports() {
   const { mutate: exportPDF, isPending: isLoadingExportPdf } = useMutation({
     mutationFn: () => exportPDFService(historic),
     onSuccess(data) {
-      const url = window.URL.createObjectURL(new Blob([data]))
+      const url = window.URL.createObjectURL(data)
       const a = document.createElement('a')
       a.href = url
       a.download = `${new Date().getTime()}-report.pdf`

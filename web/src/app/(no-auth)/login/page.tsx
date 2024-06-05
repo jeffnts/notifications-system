@@ -8,10 +8,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { CreateAccount, ForgotPassword } from './modals'
+import useLogin from './useLogin'
 
 export default function LoginPage() {
   const [forgotPasswordOpen, setForgotPasswordOpen] = useState(false)
   const [signUpOpen, setSignUpOpen] = useState(false)
+
+  const { register, onSubmit, isPending, errors } = useLogin()
+
   return (
     <div className="flex min-h-screen w-full">
       <div className="hidden lg:block w-1/2 bg-gray-100 dark:bg-gray-800">
@@ -41,10 +45,10 @@ export default function LoginPage() {
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
-                id="email"
                 type="email"
                 placeholder="Digite seu e-mail"
-                required
+                {...register('email')}
+                errors={errors}
               />
             </div>
             <div className="space-y-2">
@@ -59,9 +63,18 @@ export default function LoginPage() {
                   Esqueceu sua senha?
                 </Link>
               </div>
-              <PasswordInput placeholder="Digite sua senha" />
+              <PasswordInput
+                placeholder="Digite sua senha"
+                {...register('password')}
+                errors={errors}
+              />
             </div>
-            <Button type="submit" className="w-full">
+            <Button
+              disabled={isPending}
+              onClick={onSubmit}
+              type="submit"
+              className="w-full"
+            >
               Entrar
             </Button>
           </div>

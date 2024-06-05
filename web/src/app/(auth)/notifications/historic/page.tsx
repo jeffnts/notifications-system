@@ -41,7 +41,7 @@ import {
   FileIcon,
   FileSpreadsheetIcon,
 } from '@/components/icons'
-import { mapChannels } from '@/conts'
+import { mapChannels } from '@/consts'
 import useHistoric from './useHistoric'
 
 export default function HistoricNotificationsPage() {
@@ -68,15 +68,15 @@ export default function HistoricNotificationsPage() {
   const channelsOptions = [
     {
       label: 'Web Push',
-      value: 'web-push',
+      value: 'WEB_PUSH',
     },
     {
       label: 'E-mail',
-      value: 'email',
+      value: 'EMAIL',
     },
     {
       label: 'SMS',
-      value: 'sms',
+      value: 'SMS',
     },
   ]
 
@@ -305,8 +305,8 @@ export default function HistoricNotificationsPage() {
                       </div>
 
                       <div>
-                        <Label>Conteúdo do email</Label>
-                        <p>{selectedRow.message.emailContent}</p>
+                        <Label>Conteúdo do EMAIL</Label>
+                        <p>{selectedRow.message.EMAILContent}</p>
                       </div>
                     </div>
                   </div>

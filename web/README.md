@@ -25,6 +25,49 @@ A aplicação é composta pelas seguintes rotas:
 - **/notifications/send**: Página com as opções de enviar notificações que podem ser pelos canais: Web Push, E-mail e SMS.
 - **/notifications/historic**: Página com o histórico de todas as notificações criadas.
 
+## Variáveis de Ambiente
+
+Para configurar corretamente a aplicação, você precisará definir algumas variáveis de ambiente. Estas variáveis são necessárias para autenticação e para a conexão com a API. Abaixo estão as descrições das variáveis de ambiente utilizadas:
+
+### SECRET
+
+- **Descrição**: Chave secreta utilizada para várias operações criptográficas na aplicação.
+- **Valor Exemplo**: `dhsidashfojhda`
+
+Esta chave é usada para assegurar a integridade e segurança de certas operações internas da aplicação.
+
+### NEXTAUTH_SECRET
+
+- **Descrição**: Chave secreta utilizada pelo NextAuth.js para assinar e criptografar tokens.
+- **Valor Exemplo**: `dosdjsnfjodhfr`
+
+Esta chave é crucial para a segurança das operações de autenticação realizadas pelo NextAuth.js.
+
+### API_URL
+
+- **Descrição**: URL base para a API.
+- **Valor Exemplo**: `http://localhost:5000`
+
+Esta URL é usada para fazer requisições à API interna da aplicação.
+
+### NEXT_PUBLIC_API_URL
+
+- **Descrição**: URL base para a API, exposta para o front-end.
+- **Valor Exemplo**: `http://localhost:5000`
+
+Esta URL é usada pelo lado cliente (front-end) da aplicação para fazer requisições à API. Deve ser igual à `API_URL` e é prefixada com `NEXT_PUBLIC_` para ser acessível no lado do cliente.
+
+### Configuração do arquivo `.env`
+
+Abaixo está um exemplo de como o arquivo `.env` deve ser configurado:
+
+```plaintext
+SECRET=dhsidashfojhda
+NEXTAUTH_SECRET=dosdjsnfjodhfr
+API_URL=http://localhost:5000
+NEXT_PUBLIC_API_URL=http://localhost:5000
+
+
 ## Rodando a Aplicação
 
 ### Usando npm

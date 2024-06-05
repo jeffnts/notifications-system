@@ -17,7 +17,7 @@ import { SendIcon } from '@/components/icons'
 import useApplications from '@/hooks/useApplications'
 
 export default function SendNotificationPage() {
-  const [channel, setChannel] = useState('web-push')
+  const [channel, setChannel] = useState('WEB_PUSH')
   const [imagePreview, setImagePreview] = useState<string>(
     '/image-placeholder.png'
   )
@@ -81,14 +81,14 @@ export default function SendNotificationPage() {
                   <SelectValue placeholder="Selecione o canal" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="web-push">Web Push</SelectItem>
-                  <SelectItem value="email">E-mail</SelectItem>
-                  <SelectItem value="sms">SMS</SelectItem>
+                  <SelectItem value="WEB_PUSH">Web Push</SelectItem>
+                  <SelectItem value="EMAIL">E-mail</SelectItem>
+                  <SelectItem value="SMS">SMS</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
-          {channel === 'web-push' && (
+          {channel === 'WEB_PUSH' && (
             <>
               <div className="space-y-2">
                 <Label htmlFor="appName">Título da Mensagem</Label>
@@ -132,7 +132,7 @@ export default function SendNotificationPage() {
             </>
           )}
 
-          {channel === 'email' && (
+          {channel === 'EMAIL' && (
             <>
               <div className="space-y-2">
                 <Label htmlFor="appName">E-mails dos destinatários</Label>
@@ -147,7 +147,7 @@ export default function SendNotificationPage() {
           )}
         </div>
 
-        {channel === 'sms' && (
+        {channel === 'SMS' && (
           <>
             <div className="space-y-2">
               <Label htmlFor="appName">Telefones dos usuários</Label>
