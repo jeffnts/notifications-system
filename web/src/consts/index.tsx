@@ -22,8 +22,8 @@ export const menuItems = [
 
 export const mapChannels: any = {
   WEB_PUSH: 'Web Push',
-  email: 'E-mail',
-  sms: 'SMS',
+  EMAIL: 'E-mail',
+  SMS: 'SMS',
 }
 
 export const cookieToken = 'notifications_system.token'
