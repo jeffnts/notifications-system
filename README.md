@@ -2,7 +2,7 @@
 
 A **Notifications System** é uma aplicação de gerenciamento de notificações que permite criar, editar e gerenciar aplicativos que irão enviar notificações. A aplicação suporta notificações do tipo Web Push, E-mail e SMS.
 
-## URL de produição
+## URL de produção
 
 Abra seu navegador da web e acesse a seguinte URL para acessar a aplicação em produção:
 
